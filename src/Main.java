@@ -28,7 +28,9 @@ public class Main {
             a[starty][startx] = count;
             a[sizey][startx] = count;
             a[sizey][sizex] = count;
-            rotate(a, rot, x1, x2, y1, y2, size);
+            if(rot != 0){
+                rotate(a, rot, x1, x2, y1, y2, size);
+            }
             count++;
             if(count == 10){
                 count = 2;
@@ -39,6 +41,9 @@ public class Main {
             fill(a, 0, x1, ((x2-x1)/2)+x1, y2-((y2-y1)/2), y2, size); //bottom left
             fill(a, 270, x2-((x2-x1)/2), x2, y2-((y2-y1)/2), y2, size); //bottom right
             fill(a, 0, x2-((x2-x1)/2), x2, y1, ((y2-y1)/2)+y1, size); //top right
+            if(rot != 0){
+                rotate(a, rot, x1, x2, y1, y2, size);
+            }
         }
     }
 
@@ -48,10 +53,9 @@ public class Main {
         boolean didRotation = false;
 
         int[][] newa = new int[size][size];
-        while (rot != 0) {
+        if (rot != 0) {
             didRotation = true;
             newa = dorotation(a, rot, x1, x2, y1, y2, size);
-            rot = 0;
         }
 
         if (didRotation) {
