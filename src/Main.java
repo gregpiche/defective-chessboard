@@ -30,12 +30,15 @@ public class Main {
             a[sizey][sizex] = count;
             rotate(a, rot, x1, x2, y1, y2, size);
             count++;
+            if(count == 10){
+                count = 2;
+            }
         }
         else{
-            fill(a, 90, x1, x2/2, y1, y2/2, size); //top left
-            fill(a, 0, x1, x2/2, y2/2, y2, size); //bottom left
-            fill(a, 270, x2/2, x2, y2/2, y2, size); //bottom right
-            fill(a, 0, x2/2, x2, y1, y2/2, size); //top right
+            fill(a, 90, x1, ((x2-x1)/2)+x1, y1, ((y2-y1)/2)+y1, size); //top left
+            fill(a, 0, x1, ((x2-x1)/2)+x1, y2-((y2-y1)/2), y2, size); //bottom left
+            fill(a, 270, x2-((x2-x1)/2), x2, y2-((y2-y1)/2), y2, size); //bottom right
+            fill(a, 0, x2-((x2-x1)/2), x2, y1, ((y2-y1)/2)+y1, size); //top right
         }
     }
 
