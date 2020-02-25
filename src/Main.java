@@ -1,21 +1,113 @@
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+
 import java.util.Arrays;
 
-public class Main {
+
+public class Main extends Application implements EventHandler<ActionEvent> {
 
     public static int count = 2;
+    public int[][] chessboard;
+    public VBox layout = new VBox(10);
+
+    // GUI component initialization
+    Button button;
 
     public static void main(String[] args) {
-        int n = 3;
-        int size = (int)Math.pow(2,n);
+        launch(args);
+    }
 
-        int[][] chessboard = new int[size][size];
+    @Override
+    public void start(Stage stage) throws Exception {
+        stage.setTitle("Defective Chessboard");
 
-        chessboard[0][size-1] = 1;
+        // GUI elements
+        button = new Button("Solve");
+        button.setOnAction(this);
 
-        fill(chessboard, 0, 0, size,0,size, size);
+        TextField nInput = new TextField();
 
-        for (int[] row : chessboard)
+        // Layout
+
+        layout.setPadding(new Insets(20, 20, 20, 20));
+        layout.getChildren().addAll(nInput, button);
+
+        Scene scene = new Scene(layout, 300, 375);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    @Override
+    public void handle(ActionEvent event) {
+
+        int n = 4;
+        int size = (int) Math.pow(2, n);
+
+        chessboard = new int[size][size];
+
+        chessboard[0][size - 1] = 1;
+
+        fill(chessboard, 0, 0, size, 0, size, size);
+
+        for (int[] row : chessboard){
             System.out.println(Arrays.toString(row));
+        }
+
+        // Table GUI
+        GridPane root = new GridPane();
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col ++) {
+                StackPane square = new StackPane();
+                String color = "";
+                switch (chessboard[row][col]){
+                    case 0:
+                        color = "CYAN";
+                        break;
+                    case 1:
+                        color = "black";
+                        break;
+                    case 2:
+                        color = "blue";
+                        break;
+                    case 3:
+                        color = "red";
+                        break;
+                    case 4:
+                        color = "orange";
+                        break;
+                    case 5:
+                        color = "green";
+                        break;
+                    case 6:
+                        color = "white";
+                        break;
+                    case 7:
+                        color = "INDIGO";
+                        break;
+                    case 8:
+                        color = "YELLOW";
+                        break;
+                    case 9:
+                        color = "SIENNA";
+                        break;
+                }
+                square.setStyle("-fx-background-color: "+color+";");
+                root.add(square, col, row);
+            }
+        }
+        for (int i = 0; i < size; i++) {
+            root.getColumnConstraints().add(new ColumnConstraints(20));
+            root.getRowConstraints().add(new RowConstraints(20));
+        }
+        layout.getChildren().addAll(root);
     }
 
     public static void fill(int a[][], int rot, int x1, int x2, int y1, int y2, int size){
