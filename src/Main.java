@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -16,6 +17,9 @@ public class Main extends Application implements EventHandler<ActionEvent> {
     public static int count = 2;
     public int[][] chessboard;
     public VBox layout = new VBox(10);
+    public GridPane root = new GridPane();
+    public TextField nInput = new TextField();
+    public Scene scene = new Scene(layout, 360, 425);
 
     // GUI component initialization
     Button button;
@@ -32,14 +36,17 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         button = new Button("Solve");
         button.setOnAction(this);
 
-        TextField nInput = new TextField();
+        Label fieldDescriptor = new Label("Enter value for n:");
+        //TextField nInput = new TextField();
 
         // Layout
-
+        HBox init = new HBox(10);
+        init.getChildren().addAll(fieldDescriptor, nInput);
         layout.setPadding(new Insets(20, 20, 20, 20));
-        layout.getChildren().addAll(nInput, button);
+        layout.getChildren().addAll(init, button);
+        nInput.setMinWidth(init.getWidth());
+        button.setMaxWidth(scene.getWidth());
 
-        Scene scene = new Scene(layout, 300, 375);
         stage.setScene(scene);
         stage.show();
 
@@ -48,7 +55,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
 
-        int n = 4;
+        int n = Integer.parseInt(nInput.getText());
         int size = (int) Math.pow(2, n);
 
         chessboard = new int[size][size];
@@ -62,7 +69,9 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         }
 
         // Table GUI
-        GridPane root = new GridPane();
+        layout.getChildren().remove(root);
+        root.getChildren().clear();
+        // GridPane root = new GridPane();
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col ++) {
                 StackPane square = new StackPane();
@@ -108,6 +117,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
             root.getRowConstraints().add(new RowConstraints(20));
         }
         layout.getChildren().addAll(root);
+        layout.setMaxWidth(root.getWidth());
     }
 
     public static void fill(int a[][], int rot, int x1, int x2, int y1, int y2, int size){
