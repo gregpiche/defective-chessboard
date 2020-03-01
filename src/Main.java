@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
+
 
 public class Main extends Application implements EventHandler<ActionEvent> {
 
@@ -62,10 +64,9 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
         fill(chessboard, 0, 0, size, 0, size, size);
 
-        // Uncomment to have chessboard printed to console
-        /*for (int[] row : chessboard){
+        for (int[] row : chessboard){
             System.out.println(Arrays.toString(row));
-        }*/
+        }
 
         // Table GUI
         layout.getChildren().remove(root);
