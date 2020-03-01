@@ -2,14 +2,13 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
-import java.util.Arrays;
 
 
 public class Main extends Application implements EventHandler<ActionEvent> {
@@ -44,10 +43,13 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         init.getChildren().addAll(fieldDescriptor, nInput);
         layout.setPadding(new Insets(20, 20, 20, 20));
         layout.getChildren().addAll(init, button);
-        nInput.setMinWidth(init.getWidth());
+        //nInput.setMaxWidth(scene.getWidth() -  fieldDescriptor.getWidth());
         button.setMaxWidth(scene.getWidth());
+        init.setAlignment(Pos.CENTER);
 
-        stage.setScene(scene);
+        root.setAlignment(Pos.CENTER);
+
+        stage.setScene(scene); // align chessboard
         stage.show();
 
     }
@@ -64,14 +66,16 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
         fill(chessboard, 0, 0, size, 0, size, size);
 
+        /* Uncomment to print to terminal
         for (int[] row : chessboard){
             System.out.println(Arrays.toString(row));
-        }
+        }*/
 
         // Table GUI
+
         layout.getChildren().remove(root);
-        root.getChildren().clear();
-        // GridPane root = new GridPane();
+
+        // Set color to chess board triminoes
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col ++) {
                 StackPane square = new StackPane();
@@ -112,12 +116,14 @@ public class Main extends Application implements EventHandler<ActionEvent> {
                 root.add(square, col, row);
             }
         }
+
+        // Set size to each column and row in chessboard
         for (int i = 0; i < size; i++) {
             root.getColumnConstraints().add(new ColumnConstraints(20));
             root.getRowConstraints().add(new RowConstraints(20));
         }
+
         layout.getChildren().addAll(root);
-        layout.setMaxWidth(root.getWidth());
     }
 
     public static void fill(int a[][], int rot, int x1, int x2, int y1, int y2, int size){
