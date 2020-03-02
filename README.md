@@ -1,11 +1,11 @@
 # Defective Chessboard
 **Background**
 
-The defective chessboard problem is a common problem used to develop the divide and conquer methodology when it comes to writing algorithms. In the problem we are given a 2<sup>n</sup> by 2<sup>n</sup> chessboard where the top right corner is removed. Given this chessboard we are able to cover the remaining tiles on the board with L-shaped pieces (called trimino) made of three tiles. These tiles can be rotated as needed. The idea is to recursively solve n/2 by n/2 boards until the entir board is solved.  
+The defective chessboard problem is a common problem used to explore the divide and conquer methodology when it comes to writing and analyzing algorithms. In the problem we are given a 2<sup>n</sup> by 2<sup>n</sup> chessboard where the top right corner is removed. Given this chessboard we are able to cover the remaining tiles on the board with L-shaped pieces made of three tiles (called trimino). These tiles can be rotated as needed. The idea is to recursively solve n/2 by n/2 boards until the entire board is solved.  
 
 **Implementation**
 
-The whole program was made using Java and JavaFx for the GUI. In my implementation, I coloured the triminoes with the top-right tile being black. Since the board size grows rather quickly, I can generate up to 2<sup>8</sup> by 2<sup>8</sup> until I encounter isues. Since the tiles are of fixed size, at 256 tiles by 256 tiles it becomes hard to view the entirety of the board. 
+The whole program was made using Java and JavaFx for the GUI. In my implementation, I coloured the triminoes with the top-right tile being black. Since the board size grows rather quickly, I can generate up to 2<sup>8</sup> by 2<sup>8</sup> until I encounter isues. The tiles are of fixed size, so at 256 tiles by 256 tiles it becomes hard to view the entirety of the board. 
 
 **Images of GUI**
 
