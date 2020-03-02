@@ -14,5 +14,5 @@ The whole program was made using Java and JavaFx for the GUI. In my implementati
 **Possible Improvements**
 
 Outstanding tasks to improve the program
-- [ ] Reduce the size of the array to only necessary size when rotating
-- [ ] Added input validation to ensure on `int` are entered
+- [ ] Reduce the size of the new array so the minimum size is used when rotating a part of an array
+- [ ] Added input validation to ensure only `int` are entered
