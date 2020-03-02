@@ -16,3 +16,5 @@ The whole program was made using Java and JavaFx for the GUI. In my implementati
 Outstanding tasks to improve the program
 - [ ] Reduce the size of the new array so the minimum size is used when rotating a part of an array
 - [ ] Added input validation to ensure only `int` are entered
+- [ ] Add adjustable stage when chessboard exceeds initial stage created
+- [ ] Zoom/scroll feature to see whole chessboard
